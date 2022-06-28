@@ -22,7 +22,6 @@ require (
 	github.com/cpuguy83/go-md2man/v2 v2.0.0 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/fsnotify/fsnotify v1.5.1 // indirect
-	github.com/get-woke/woke v0.18.2 // indirect
 	github.com/go-git/gcfg v1.5.0 // indirect
 	github.com/go-git/go-git/v5 v5.4.2 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
@@ -48,4 +47,3 @@ require (
 	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b // indirect
 )
 
-replace github.com/get-woke/woke => github.com/CiscoM31/woke@checkstyle-cisco
