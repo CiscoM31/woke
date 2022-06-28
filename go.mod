@@ -1,4 +1,4 @@
-module github.com/get-woke/woke
+module github.com/CiscoM31/woke
 
 go 1.17
 
