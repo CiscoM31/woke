@@ -106,14 +106,27 @@ func TestParseArgs(t *testing.T) {
 		},
 		{
 			stdin:         false,
+			args:          []string{"../testdata/[a-z]ood.yml"},
+			expectedArgs:  []string{"../testdata/good.yml"},
+			expectedError: nil,
+		},
+		{
+			stdin:         false,
 			args:          []string{"../testdata/*/*.yml"},
 			expectedArgs:  []string{"../testdata/subdir1/good.yml", "../testdata/subdir1/whitelist.yml"},
 			expectedError: nil,
 		},
 		{
-			stdin:         false,
-			args:          []string{"../testdata/[a-z]ood.yml"},
-			expectedArgs:  []string{"../testdata/good.yml"},
+			stdin: false,
+			args:  []string{"../testdata/**/*.yml"},
+			expectedArgs: []string{
+				"../testdata/good.yml",
+				"../testdata/whitelist.yml",
+				"../testdata/subdir1/good.yml",
+				"../testdata/subdir1/whitelist.yml",
+				"../testdata/subdir1/subdir2/good.yml",
+				"../testdata/subdir1/subdir2/whitelist.yml",
+			},
 			expectedError: nil,
 		},
 

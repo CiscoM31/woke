@@ -37,6 +37,7 @@ import (
 	"github.com/get-woke/woke/pkg/parser"
 	"github.com/get-woke/woke/pkg/printer"
 
+	"github.com/bmatcuk/doublestar/v4"
 	"github.com/mitchellh/go-homedir"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
@@ -178,7 +179,19 @@ func parseArgs(args []string) ([]string, error) {
 	// Perform glob expansion.
 	var files []string
 	for _, arg := range args {
-		f, err := filepath.Glob(arg)
+		var f []string
+		var err error
+		if strings.Contains(arg, "**") {
+			// Double star glob expansion.
+			base, pattern := doublestar.SplitPattern(arg)
+			fsys := os.DirFS(base)
+			f, err = doublestar.Glob(fsys, pattern)
+			for i := range f {
+				f[i] = filepath.Join(base, f[i])
+			}
+		} else {
+			f, err = filepath.Glob(arg)
+		}
 		if err != nil {
 			return nil, err
 		}
