@@ -26,6 +26,7 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"path/filepath"
 	"runtime"
 	"strings"
 	"time"
@@ -121,7 +122,11 @@ func rootRunE(cmd *cobra.Command, args []string) error {
 		return err
 	}
 
-	findings := p.ParsePaths(print, parseArgs(args)...)
+	files, err := parseArgs(args)
+	if err != nil {
+		return err
+	}
+	findings := p.ParsePaths(print, files...)
 
 	if exitOneOnFailure && findings > 0 {
 		// We intentionally return an error if exitOneOnFailure is true, but don't want to show usage
@@ -162,7 +167,7 @@ func GetRootCmd() cobra.Command {
 	return *rootCmd
 }
 
-func parseArgs(args []string) []string {
+func parseArgs(args []string) ([]string, error) {
 	if len(args) == 0 {
 		args = parser.DefaultPath
 	}
@@ -170,8 +175,17 @@ func parseArgs(args []string) []string {
 	if stdin {
 		args = []string{os.Stdin.Name()}
 	}
+	// Perform glob expansion.
+	var files []string
+	for _, arg := range args {
+		f, err := filepath.Glob(arg)
+		if err != nil {
+			return nil, err
+		}
+		files = append(files, f...)
+	}
 
-	return args
+	return files, nil
 }
 
 func setDebugLogLevel() {
