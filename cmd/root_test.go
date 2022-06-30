@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"io"
 	"os"
-	"path/filepath"
 	"regexp"
 	"strings"
 	"testing"
@@ -12,6 +11,7 @@ import (
 	"github.com/get-woke/woke/pkg/output"
 	"github.com/get-woke/woke/pkg/parser"
 
+	"github.com/bmatcuk/doublestar/v4"
 	"github.com/mitchellh/go-homedir"
 	"github.com/rs/zerolog"
 	"github.com/spf13/cobra"
@@ -135,7 +135,7 @@ func TestParseArgs(t *testing.T) {
 			stdin:         false,
 			args:          []string{"r[.go"},
 			expectedArgs:  nil,
-			expectedError: filepath.ErrBadPattern,
+			expectedError: doublestar.ErrBadPattern,
 		},
 
 		{
