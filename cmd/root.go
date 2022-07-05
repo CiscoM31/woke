@@ -167,6 +167,9 @@ func GetRootCmd() cobra.Command {
 	return *rootCmd
 }
 
+// parseArgs parses the command-line positional arguments that contain file glob patterns.
+// If no argument is provided, return the default path (current directory).
+// Perform glob pattern expansion.
 func parseArgs(args []string) ([]string, error) {
 	if len(args) == 0 {
 		args = parser.DefaultPath
