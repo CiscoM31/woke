@@ -20,7 +20,6 @@ require (
 
 require (
 	github.com/acomagu/bufpipe v1.0.3 // indirect
-	github.com/bmatcuk/doublestar/v4 v4.0.2 // indirect
 	github.com/cpuguy83/go-md2man/v2 v2.0.0 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/fsnotify/fsnotify v1.5.1 // indirect
@@ -49,4 +48,4 @@ require (
 	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b // indirect
 )
 
-replace github.com/bmatcuk/doublestar/v4 => github.com/CiscoM31/doublestar/v4 v4.0.3-0.20220630225509-542099ee2f56
+replace github.com/bmatcuk/doublestar/v4 => github.com/CiscoM31/doublestar/v4 v4.0.3-0.20220705185530-d6ed232939a4
