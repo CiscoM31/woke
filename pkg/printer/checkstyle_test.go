@@ -30,7 +30,7 @@ func TestFormatResultForCheckstyle(t *testing.T) {
 	}
 	got := formatResultForCheckstyle(&testResult)
 	assert.Equal(t,
-		"    <error column=\"3\" line=\"5\" message=\"`whitelist` may be insensitive, use `allowlist` instead\" severity=\"warning\"/>",
+		"    <error column=\"3\" line=\"5\" message=\"`whitelist` may be insensitive, use `allowlist` instead\" severity=\"warning\" source=\"woke\"/>",
 		got)
 }
 

@@ -43,7 +43,7 @@ func (p *Checkstyle) End() {
 }
 
 func formatResultForCheckstyle(r result.Result) string {
-	return fmt.Sprintf(`    <error column="%d" line="%d" message="%s" severity="%s"/>`,
+	return fmt.Sprintf(`    <error column="%d" line="%d" message="%s" severity="%s" source="woke"/>`,
 		r.GetStartPosition().Column,
 		r.GetStartPosition().Line,
 		r.Reason(),
